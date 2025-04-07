@@ -8,13 +8,21 @@ public class Tekuci extends Racun{
 
     }
 
-    @Override
-    public void uplata(double iznos) {
 
+    public double getMaxDebt() {
+        return maxDebt;
+    }
+
+    public void setMaxDebt(double maxDebt) {
+        this.maxDebt = maxDebt;
     }
 
     @Override
-    public void isplata(double iznos) {
+    public void isplata(double iznos) throws NedovoljnoSredstavaException {
+        if(iznos-getStanjeRacuna()<maxDebt){
+            throw new NedovoljnoSredstavaException("Nemate dovoljno sredstava na racunu");
+        }
+        setStanjeRacuna(getStanjeRacuna()-iznos);
 
     }
 }

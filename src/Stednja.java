@@ -6,5 +6,16 @@ public class Stednja extends Racun {
         super(brojRacuna, stanjeRacuna);
     }
 
+    public int getMinStanje() {
+        return minStanje;
+    }
 
+    @Override
+    public void isplata(double iznos) throws NedovoljnoSredstavaException {
+        if(iznos-getStanjeRacuna()<minStanje){
+            throw new NedovoljnoSredstavaException("Nemate dovoljno sredstava na racunu");
+        }
+        setStanjeRacuna(getStanjeRacuna()-iznos);
+
+    }
 }
